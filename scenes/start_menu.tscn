@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://hp7ifaeitisi"]
+
+[ext_resource type="Script" path="res://scripts/StartMenu.gd" id="1_saccd"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_saccd")
+
+[node name="Title" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_right = 210.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Title"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Title/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "INVASIVE SPECIES"
+
+[node name="Info" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 186.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info"]
+layout_mode = 2
+
+[node name="Author" type="Label" parent="Info/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "By Baro
+"
+
+[node name="Game Jam" type="Label" parent="Info/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Pirate Software - Game Jam 14"
+
+[node name="Buttons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -130.0
+offset_right = 35.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Buttons/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
