@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6gl3w27mkywd"]
+[gd_scene load_steps=3 format=3 uid="uid://c6gl3w27mkywd"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_j78ga"]
+[ext_resource type="PackedScene" uid="uid://bx5vu74se70ny" path="res://scenes/player.tscn" id="2_fjd1m"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_j78ga")
+
+[node name="Player" parent="." instance=ExtResource("2_fjd1m")]
+position = Vector2(360, 241)
