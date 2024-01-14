@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx5vu74se70ny"]
+[gd_scene load_steps=12 format=3 uid="uid://bx5vu74se70ny"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fxgm7"]
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="2_bslif"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_dm0p1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lcde"]
 atlas = ExtResource("2_bslif")
@@ -54,6 +55,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_dc571"]
 radius = 12.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vkjw"]
+radius = 30.0
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 platform_on_leave = 2
@@ -68,3 +72,10 @@ animation = &"idle"
 shape = SubResource("CircleShape2D_dc571")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("3_dm0p1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(16, -13)
+shape = SubResource("CircleShape2D_2vkjw")

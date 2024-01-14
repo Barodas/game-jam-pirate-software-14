@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgn0nbf3t8uts"]
+[gd_scene load_steps=12 format=3 uid="uid://cgn0nbf3t8uts"]
 
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_e7gkc"]
 [ext_resource type="Script" path="res://scripts/enemy_mouse.gd" id="1_iok72"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_v4rxl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rct8m"]
 atlas = ExtResource("1_e7gkc")
@@ -52,7 +53,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pep8p"]
-radius = 7.0
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kocak"]
 
 [node name="EnemyMouse" type="CharacterBody2D"]
 script = ExtResource("1_iok72")
@@ -64,3 +67,9 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_pep8p")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_v4rxl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_kocak")
