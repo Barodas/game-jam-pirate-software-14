@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx5vu74se70ny"]
+[gd_scene load_steps=16 format=3 uid="uid://bx5vu74se70ny"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fxgm7"]
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="2_bslif"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_dm0p1"]
+[ext_resource type="Texture2D" uid="uid://dcmu103nkpef1" path="res://assets/ClawSwipe.png" id="4_5mwcu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6lcde"]
 atlas = ExtResource("2_bslif")
@@ -58,6 +59,91 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2vkjw"]
 radius = 30.0
 
+[sub_resource type="Animation" id="Animation_uqenw"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_20ubm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7o6h"]
+_data = {
+"RESET": SubResource("Animation_20ubm"),
+"attack": SubResource("Animation_uqenw")
+}
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 platform_on_leave = 2
@@ -77,5 +163,19 @@ shape = SubResource("CircleShape2D_dc571")
 script = ExtResource("3_dm0p1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(16, -13)
+position = Vector2(20, 0)
 shape = SubResource("CircleShape2D_2vkjw")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HitBox"]
+visible = false
+position = Vector2(24, 1)
+rotation = 0.907571
+texture = ExtResource("4_5mwcu")
+hframes = 3
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HitBox"]
+libraries = {
+"": SubResource("AnimationLibrary_r7o6h")
+}

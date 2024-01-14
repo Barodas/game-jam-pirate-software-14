@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var _hitbox = $HitBox
 
 const SPEED = 100.0
-const ATTACK_SPEED = 1
+const ATTACK_SPEED = 2.0
 
 var attack_timer = 0.0
 
@@ -28,5 +28,5 @@ func _physics_process(delta):
 	
 	attack_timer -= delta
 	if attack_timer <= 0:
-		_hitbox.activate(0.3)
+		_hitbox.activate()
 		attack_timer = ATTACK_SPEED
