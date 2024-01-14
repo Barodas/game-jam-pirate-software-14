@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bo4uhyne5h6wi"]
+
+[ext_resource type="Script" path="res://scripts/follower.gd" id="1_135jq"]
+[ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_sfucr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp3s5"]
+atlas = ExtResource("1_sfucr")
+region = Rect2(64, 384, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4t4d"]
+atlas = ExtResource("1_sfucr")
+region = Rect2(64, 384, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2fay"]
+atlas = ExtResource("1_sfucr")
+region = Rect2(80, 384, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js2wo"]
+atlas = ExtResource("1_sfucr")
+region = Rect2(96, 384, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ujxb"]
+atlas = ExtResource("1_sfucr")
+region = Rect2(112, 384, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adwh2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp3s5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4t4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2fay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js2wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ujxb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4lmm7"]
+radius = 6.0
+
+[node name="Follower" type="RigidBody2D"]
+script = ExtResource("1_135jq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_adwh2")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4lmm7")

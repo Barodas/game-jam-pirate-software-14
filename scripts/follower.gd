@@ -1,11 +1,11 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @onready var _sprite = $AnimatedSprite2D
 
-const SPEED = 100.0
+const SPEED = 300.0
 
 func _process(delta):
-	if velocity.length() > 0.0:
+	if velocitdy.length() > 0.0:
 		_sprite.play("walk")
 	else:
 		_sprite.play("idle")
@@ -17,5 +17,5 @@ func _process(delta):
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
+	velocity = direction * (SPEED * delta)
 	move_and_slide()

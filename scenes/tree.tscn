@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0u8gjdlci11t"]
+
+[ext_resource type="Texture2D" uid="uid://bckp1ulahd4t4" path="res://assets/RPG Tileset.png" id="1_qvvry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujovx"]
+radius = 9.0
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -14)
+scale = Vector2(1.53333, 3.26667)
+texture = ExtResource("1_qvvry")
+region_enabled = true
+region_rect = Rect2(17, 592, 15, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ujovx")

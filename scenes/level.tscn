@@ -1,10 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6gl3w27mkywd"]
+[gd_scene load_steps=5 format=3 uid="uid://c6gl3w27mkywd"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_j78ga"]
 [ext_resource type="PackedScene" uid="uid://bx5vu74se70ny" path="res://scenes/player.tscn" id="2_fjd1m"]
+[ext_resource type="PackedScene" uid="uid://cgn0nbf3t8uts" path="res://scenes/enemy_mouse.tscn" id="3_7rm2p"]
+[ext_resource type="PackedScene" uid="uid://c0u8gjdlci11t" path="res://scenes/tree.tscn" id="4_fctx3"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_j78ga")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -6.0
+offset_top = -4.0
+offset_right = 726.0
+offset_bottom = 488.0
+color = Color(0.121569, 0.603922, 0.0588235, 1)
+
 [node name="Player" parent="." instance=ExtResource("2_fjd1m")]
 position = Vector2(360, 241)
+
+[node name="EnemyMouse" parent="." instance=ExtResource("3_7rm2p")]
+position = Vector2(94, 99)
+
+[node name="EnemyMouse2" parent="." instance=ExtResource("3_7rm2p")]
+position = Vector2(124, 80)
+
+[node name="EnemyMouse3" parent="." instance=ExtResource("3_7rm2p")]
+position = Vector2(81, 65)
+
+[node name="Tree" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(478, 147)
+
+[node name="Tree2" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(580, 299)
+
+[node name="Tree3" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(270, 370)
+
+[node name="Tree4" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(115, 277)
+
+[node name="Tree5" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(66, 224)
+
+[node name="Tree6" parent="." instance=ExtResource("4_fctx3")]
+position = Vector2(141, 21)

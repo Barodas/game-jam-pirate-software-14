@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgn0nbf3t8uts"]
+
+[ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_e7gkc"]
+[ext_resource type="Script" path="res://scripts/enemy_mouse.gd" id="1_iok72"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rct8m"]
+atlas = ExtResource("1_e7gkc")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibqcs"]
+atlas = ExtResource("1_e7gkc")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf7xr"]
+atlas = ExtResource("1_e7gkc")
+region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxxtb"]
+atlas = ExtResource("1_e7gkc")
+region = Rect2(96, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcyq8"]
+atlas = ExtResource("1_e7gkc")
+region = Rect2(112, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t577i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rct8m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibqcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf7xr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxxtb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcyq8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pep8p"]
+radius = 7.0
+
+[node name="EnemyMouse" type="CharacterBody2D"]
+script = ExtResource("1_iok72")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t577i")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_pep8p")
