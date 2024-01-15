@@ -2,8 +2,9 @@ class_name HurtBox
 extends Area2D
 
 func _init():
-	collision_layer = 0
-	collision_mask = 2
+	pass
+	#collision_layer = 0
+	#collision_mask = 2
 
 func _ready():
 	area_entered.connect(_on_area_entered)

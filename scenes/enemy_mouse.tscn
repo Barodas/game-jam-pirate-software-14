@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgn0nbf3t8uts"]
+[gd_scene load_steps=13 format=3 uid="uid://cgn0nbf3t8uts"]
 
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_e7gkc"]
 [ext_resource type="Script" path="res://scripts/enemy_mouse.gd" id="1_iok72"]
@@ -57,7 +57,12 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kocak"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmcgu"]
+radius = 8.0
+
 [node name="EnemyMouse" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_iok72")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -69,7 +74,16 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_pep8p")
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("3_v4rxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_kocak")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_dmcgu")

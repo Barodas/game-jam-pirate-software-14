@@ -2,11 +2,17 @@ extends CharacterBody2D
 
 @onready var _sprite = $AnimatedSprite2D
 @onready var _hitbox = $HitBox
+@onready var _hurtbox = $HurtBox
+
+const ENEMY_DAMAGE_RATE = 5.0 
 
 const SPEED = 100.0
 const ATTACK_SPEED = 2.0
+const MAX_HEALTH = 100.0
 
 var attack_timer = 0.0
+
+var health = MAX_HEALTH
 
 func _process(delta):
 	if velocity.length() > 0.0:
@@ -30,3 +36,11 @@ func _physics_process(delta):
 	if attack_timer <= 0:
 		_hitbox.activate()
 		attack_timer = ATTACK_SPEED
+	
+	var overlapping_mobs = _hurtbox.get_overlapping_bodies()
+	if overlapping_mobs.size() > 0:
+		health -= ENEMY_DAMAGE_RATE * overlapping_mobs.size() * delta
+		print("Player health reduced to ", health)
+		if health <= 0.0:
+			# TODO: Game over
+			print("Player has Died!")
