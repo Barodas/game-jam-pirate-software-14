@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bx5vu74se70ny"]
+[gd_scene load_steps=19 format=3 uid="uid://bx5vu74se70ny"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fxgm7"]
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="2_bslif"]
@@ -147,10 +147,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_5see7"]
 radius = 17.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkutg"]
+bg_color = Color(0.72549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybsyo"]
+bg_color = Color(0.0470588, 0.729412, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 motion_mode = 1
 platform_on_leave = 2
+platform_floor_layers = 4294901760
 script = ExtResource("1_fxgm7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -192,3 +199,13 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_5see7")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -29.0
+offset_top = -27.0
+offset_right = 29.0
+offset_bottom = -20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bkutg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybsyo")
+value = 100.0
+show_percentage = false

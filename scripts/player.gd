@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+signal game_over
+
 @onready var _sprite = $AnimatedSprite2D
 @onready var _hitbox = $HitBox
 @onready var _hurtbox = $HurtBox
+@onready var _healthbar = $ProgressBar
 
 const ENEMY_DAMAGE_RATE = 5.0 
 
@@ -26,21 +29,21 @@ func _process(delta):
 		_sprite.flip_h = false
 
 func _physics_process(delta):
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
-	move_and_slide()
-	
-	_hitbox.look_at(get_global_mouse_position())
-	
-	attack_timer -= delta
-	if attack_timer <= 0:
-		_hitbox.activate()
-		attack_timer = ATTACK_SPEED
+	if health >= 0.0:
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = direction * SPEED
+		move_and_slide()
+		
+		_hitbox.look_at(get_global_mouse_position())
+		
+		attack_timer -= delta
+		if attack_timer <= 0:
+			_hitbox.activate()
+			attack_timer = ATTACK_SPEED
 	
 	var overlapping_mobs = _hurtbox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
 		health -= ENEMY_DAMAGE_RATE * overlapping_mobs.size() * delta
-		print("Player health reduced to ", health)
+		_healthbar.value = health
 		if health <= 0.0:
-			# TODO: Game over
-			print("Player has Died!")
+			game_over.emit()

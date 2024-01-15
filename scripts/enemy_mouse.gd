@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var _sprite = $AnimatedSprite2D
 
-const SPEED = 100.0
+const SPEED = 50.0
 
 @export var health = 10
 
