@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6gl3w27mkywd"]
+[gd_scene load_steps=7 format=3 uid="uid://c6gl3w27mkywd"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_j78ga"]
 [ext_resource type="PackedScene" uid="uid://bx5vu74se70ny" path="res://scenes/player.tscn" id="2_fjd1m"]
@@ -9,6 +9,11 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 404, -286, 0, 0, 0, 0, 409, 270, 0, 0, 0, 0, -401, 270, 0, 0, 0, 0, -397, -283, 0, 0, 0, 0, 404, -286)
 }
 point_count = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a0wd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn74p"]
+bg_color = Color(0.0666667, 0.466667, 0.780392, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_j78ga")
@@ -53,6 +58,38 @@ position = Vector2(66, 224)
 [node name="Tree6" parent="." instance=ExtResource("4_fctx3")]
 position = Vector2(141, 21)
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="LevelLabel" type="Label" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -700.0
+offset_top = 20.0
+offset_right = -672.0
+offset_bottom = 43.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "1"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
+custom_minimum_size = Vector2(600, 25)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2a0wd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dn74p")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 visible = false
 
@@ -79,4 +116,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Game Over"
 
+[connection signal="gained_exp" from="Player" to="." method="_on_player_gained_exp"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

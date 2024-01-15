@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var _player_spawn = $Player/Path2D/PlayerSpawnPath
 @onready var _game_over_screen = $GameOverScreen
+@onready var _level_label = $HUD/LevelLabel
+@onready var _exp_bar = $HUD/ProgressBar
 
 const SPAWN_INTERVAL = 0.3
 
@@ -32,3 +34,8 @@ func _on_player_game_over():
 	_game_over_screen.visible = true
 	# TODO: button to return to menu
 	# TODO: display score/run stats
+
+
+func _on_player_gained_exp(level, exp):
+	_level_label.text = str(level)
+	_exp_bar.value = exp

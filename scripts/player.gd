@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal game_over
+signal gained_exp(level: int, exp: float)
 
 @onready var _sprite = $AnimatedSprite2D
 @onready var _hitbox = $HitBox
@@ -12,10 +13,16 @@ const ENEMY_DAMAGE_RATE = 5.0
 const SPEED = 100.0
 const ATTACK_SPEED = 2.0
 const MAX_HEALTH = 100.0
+const EXP_PER_LEVEL = 100.0
 
 var attack_timer = 0.0
 
 var health = MAX_HEALTH
+var level = 1
+var exp = 0.0
+
+func _ready():
+	Signals.send_exp.connect(_on_receive_exp)
 
 func _process(delta):
 	if velocity.length() > 0.0:
@@ -47,3 +54,11 @@ func _physics_process(delta):
 		_healthbar.value = health
 		if health <= 0.0:
 			game_over.emit()
+
+func _on_receive_exp(amount):
+	exp += amount
+	if exp >= EXP_PER_LEVEL:
+		exp -= EXP_PER_LEVEL
+		level += 1
+	var exp_percent: float = exp / EXP_PER_LEVEL
+	gained_exp.emit(level, exp_percent)
