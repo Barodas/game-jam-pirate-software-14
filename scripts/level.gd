@@ -29,7 +29,6 @@ func spawn_mob():
 	new_mob.global_position = _player_spawn.global_position
 	add_child(new_mob)
 
-
 func _on_player_game_over():
 	_game_over_screen.visible = true
 	# TODO: button to return to menu

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgn0nbf3t8uts"]
+[gd_scene load_steps=14 format=3 uid="uid://cgn0nbf3t8uts"]
 
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_e7gkc"]
 [ext_resource type="Script" path="res://scripts/enemy_mouse.gd" id="1_iok72"]
@@ -60,9 +60,12 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmcgu"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_64y48"]
+radius = 100.0
+
 [node name="EnemyMouse" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 15
 motion_mode = 1
 platform_on_leave = 2
 platform_floor_layers = 4294901760
@@ -75,14 +78,16 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_pep8p")
+debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("3_v4rxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_kocak")
+debug_color = Color(0, 0.647059, 0.219608, 0.419608)
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
@@ -90,3 +95,11 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_dmcgu")
+debug_color = Color(0.976471, 0, 0.419608, 0.419608)
+
+[node name="DetectionBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
+shape = SubResource("CircleShape2D_64y48")

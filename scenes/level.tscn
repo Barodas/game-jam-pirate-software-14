@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6gl3w27mkywd"]
+[gd_scene load_steps=8 format=3 uid="uid://c6gl3w27mkywd"]
 
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_j78ga"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_j78ga"]
 [ext_resource type="PackedScene" uid="uid://bx5vu74se70ny" path="res://scenes/player.tscn" id="2_fjd1m"]
+[ext_resource type="PackedScene" uid="uid://bo4uhyne5h6wi" path="res://scenes/follower.tscn" id="3_xr3np"]
 [ext_resource type="PackedScene" uid="uid://c0u8gjdlci11t" path="res://scenes/tree.tscn" id="4_fctx3"]
 
 [sub_resource type="Curve2D" id="Curve2D_lu3v4"]
@@ -115,6 +116,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Game Over"
+
+[node name="Follower" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(177, 138)
+
+[node name="Follower2" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(166, 180)
+
+[node name="Follower3" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(392, 359)
+
+[node name="Follower4" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(566, 350)
+
+[node name="Follower5" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(271, 99)
+
+[node name="Follower6" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(540, 118)
+
+[node name="Follower7" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(178, 317)
+
+[node name="Follower8" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(313, 362)
+
+[node name="Follower9" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(392, 125)
+
+[node name="Follower10" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(532, 214)
+
+[node name="Follower11" parent="." instance=ExtResource("3_xr3np")]
+position = Vector2(452, 375)
 
 [connection signal="gained_exp" from="Player" to="." method="_on_player_gained_exp"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
