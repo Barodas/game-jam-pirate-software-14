@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b88k30pglohdx"]
+[gd_scene load_steps=14 format=3 uid="uid://b88k30pglohdx"]
 
 [ext_resource type="Texture2D" uid="uid://bckp1ulahd4t4" path="res://assets/RPG Tileset.png" id="1_4gwcx"]
 [ext_resource type="Script" path="res://scripts/den.gd" id="1_vccs8"]
@@ -43,6 +43,11 @@ bg_color = Color(0.72549, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n64pb"]
 bg_color = Color(0.0470588, 0.729412, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54fxl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n6ad"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="Curve2D" id="Curve2D_3igr0"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -24, -14, 0, 0, 0, 0, 0, -27, 0, 0, 0, 0, 24, -15, 0, 0, 0, 0, 29, 1, 0, 0, 0, 0, 26, 19, 0, 0, 0, 0, 8, 32, 0, 0, 0, 0, -13, 29, 0, 0, 0, 0, -26, 20, 0, 0, 0, 0, -29, 1, 0, 0, 0, 0, -24, -14)
@@ -71,7 +76,7 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_6mmj8")
 debug_color = Color(0, 0.635294, 0.396078, 0.419608)
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -29.0
 offset_top = -27.0
 offset_right = 29.0
@@ -79,6 +84,15 @@ offset_bottom = -20.0
 theme_override_styles/background = SubResource("StyleBoxFlat_d3v77")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n64pb")
 value = 100.0
+show_percentage = false
+
+[node name="BossSpawnBar" type="ProgressBar" parent="."]
+offset_left = -29.0
+offset_top = -18.0
+offset_right = 29.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_54fxl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4n6ad")
 show_percentage = false
 
 [node name="Path2D" type="Path2D" parent="."]

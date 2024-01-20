@@ -1,23 +1,27 @@
 extends CharacterBody2D
 
+signal boss_slain
+
 @onready var _sprite = $AnimatedSprite2D
 @onready var _detectionbox = $DetectionBox
 @onready var _healthbar = $ProgressBar
 
 const SPEED = 70.0
 
+@export var max_health = 50.0
 @export var health = 50.0
 @export var exp = 20.0
 
 @onready var player = get_node("/root/Level/Player")
 
 func _ready():
-	_healthbar.max_value = health
+	_healthbar.max_value = max_health
 	_healthbar.value = health
 
 func _process(delta):
 	if health <= 0:
 		Signals.send_exp.emit(exp, 1)
+		boss_slain.emit()
 		queue_free()
 	
 	if velocity.length() > 0.0:
