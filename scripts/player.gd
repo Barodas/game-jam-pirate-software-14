@@ -61,7 +61,8 @@ func _physics_process(delta):
 		if health <= 0.0:
 			game_over.emit()
 
-func _on_receive_exp(amount):
+func _on_receive_exp(amount, spawn_bonus):
+	follower_cap += spawn_bonus
 	exp += amount
 	if exp >= EXP_PER_LEVEL:
 		exp -= EXP_PER_LEVEL

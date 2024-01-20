@@ -6,14 +6,18 @@ extends CharacterBody2D
 
 const SPEED = 70.0
 
-@export var health = 100.0
+@export var health = 50.0
 @export var exp = 20.0
 
 @onready var player = get_node("/root/Level/Player")
 
+func _ready():
+	_healthbar.max_value = health
+	_healthbar.value = health
+
 func _process(delta):
 	if health <= 0:
-		Signals.send_exp.emit(exp)
+		Signals.send_exp.emit(exp, 1)
 		queue_free()
 	
 	if velocity.length() > 0.0:

@@ -7,14 +7,14 @@ extends StaticBody2D
 @onready var _healthbar = $ProgressBar
 @onready var _spawn = $Path2D/PathFollow2D
 
-@export var total_health = 100.0
+@export var total_health = 30.0
 @export var exp = 20.0
 @export var enemy_spawn_time = 3.0
 @export var boss_health = 100.0
 @export var boss_spawn_time = 180.0
 
 var claimed: bool = false
-var health = 100.0
+var health = 30.0
 var spawn_timer = 0.0
 var boss_timer = 0.0
 
@@ -28,7 +28,7 @@ func _process(delta):
 		_healthbar.visible = false
 		for n in 2:
 			spawn_mob()
-		Signals.send_exp.emit(exp)
+		Signals.send_exp.emit(exp, 2)
 	
 	spawn_timer -= delta
 	
