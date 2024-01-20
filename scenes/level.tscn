@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6gl3w27mkywd"]
+[gd_scene load_steps=9 format=3 uid="uid://c6gl3w27mkywd"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_j78ga"]
 [ext_resource type="PackedScene" uid="uid://bx5vu74se70ny" path="res://scenes/player.tscn" id="2_fjd1m"]
 [ext_resource type="PackedScene" uid="uid://bo4uhyne5h6wi" path="res://scenes/follower.tscn" id="3_xr3np"]
 [ext_resource type="PackedScene" uid="uid://c0u8gjdlci11t" path="res://scenes/tree.tscn" id="4_fctx3"]
+[ext_resource type="PackedScene" uid="uid://dcwf4vkqan0g7" path="res://scenes/enemy_boss.tscn" id="5_4eadv"]
 
 [sub_resource type="Curve2D" id="Curve2D_lu3v4"]
 _data = {
@@ -149,6 +150,9 @@ position = Vector2(532, 214)
 
 [node name="Follower11" parent="." instance=ExtResource("3_xr3np")]
 position = Vector2(452, 375)
+
+[node name="EnemyBoss" parent="." instance=ExtResource("5_4eadv")]
+position = Vector2(676, 218)
 
 [connection signal="gained_exp" from="Player" to="." method="_on_player_gained_exp"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

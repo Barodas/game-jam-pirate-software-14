@@ -10,7 +10,7 @@ const CHASE_SPEED = 80.0
 const WANDER_SPEED = 0.0
 
 @export var health = 20.0
-@export var damage = 10.0
+@export var damage = 5.0
 
 @onready var player = get_node("/root/Level/Player")
 
@@ -40,9 +40,9 @@ func _physics_process(delta):
 	var mobs_in_range = _detectionbox.get_overlapping_bodies()
 	var wander = false
 	if mobs_in_range.size() > 0:
-		if global_position.distance_to(mobs_in_range[0].global_position) < 10:
+		if global_position.distance_to(mobs_in_range[0].global_position) < 20:
 			if mobs_in_range[0].has_method("take_damage"):
-				mobs_in_range[0].take_damage(damage)
+				mobs_in_range[0].take_damage(damage * delta)
 		else:
 			direction = global_position.direction_to(mobs_in_range[0].global_position)
 	else:

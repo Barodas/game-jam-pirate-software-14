@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=3 uid="uid://dcwf4vkqan0g7"]
+
+[ext_resource type="Script" path="res://scripts/enemy_boss.gd" id="1_d1ihc"]
+[ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="2_8mcfj"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_qcjmq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjso7"]
+atlas = ExtResource("2_8mcfj")
+region = Rect2(0, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnh2c"]
+atlas = ExtResource("2_8mcfj")
+region = Rect2(0, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16atg"]
+atlas = ExtResource("2_8mcfj")
+region = Rect2(16, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc4c1"]
+atlas = ExtResource("2_8mcfj")
+region = Rect2(32, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb253"]
+atlas = ExtResource("2_8mcfj")
+region = Rect2(48, 288, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t577i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjso7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnh2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16atg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc4c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb253")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pep8p"]
+radius = 12.3693
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kocak"]
+radius = 23.3452
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmcgu"]
+radius = 22.2036
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64y48"]
+radius = 100.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylhg7"]
+bg_color = Color(0.72549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5eqrr"]
+bg_color = Color(0.0470588, 0.729412, 0, 1)
+
+[node name="EnemyBoss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 15
+motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294901760
+script = ExtResource("1_d1ihc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_t577i")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_pep8p")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("3_qcjmq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_kocak")
+debug_color = Color(0, 0.647059, 0.219608, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_dmcgu")
+debug_color = Color(0.976471, 0, 0.419608, 0.419608)
+
+[node name="DetectionBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
+shape = SubResource("CircleShape2D_64y48")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -29.0
+offset_top = -28.0
+offset_right = 29.0
+offset_bottom = -21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ylhg7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5eqrr")
+value = 100.0
+show_percentage = false
