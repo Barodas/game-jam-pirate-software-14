@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://b88k30pglohdx"]
+
+[ext_resource type="Texture2D" uid="uid://bckp1ulahd4t4" path="res://assets/RPG Tileset.png" id="1_4gwcx"]
+[ext_resource type="Script" path="res://scripts/den.gd" id="1_vccs8"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="3_gegtr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leohr"]
+atlas = ExtResource("1_4gwcx")
+region = Rect2(160, 224, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4mye"]
+atlas = ExtResource("1_4gwcx")
+region = Rect2(64, 224, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0m0bf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leohr")
+}],
+"loop": true,
+"name": &"claimed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4mye")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dr3t0"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6mmj8"]
+radius = 22.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3v77"]
+bg_color = Color(0.72549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n64pb"]
+bg_color = Color(0.0470588, 0.729412, 0, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_3igr0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -24, -14, 0, 0, 0, 0, 0, -27, 0, 0, 0, 0, 24, -15, 0, 0, 0, 0, 29, 1, 0, 0, 0, 0, 26, 19, 0, 0, 0, 0, 8, 32, 0, 0, 0, 0, -13, 29, 0, 0, 0, 0, -26, 20, 0, 0, 0, 0, -29, 1, 0, 0, 0, 0, -24, -14)
+}
+point_count = 10
+
+[node name="Den" type="StaticBody2D"]
+script = ExtResource("1_vccs8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0m0bf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_dr3t0")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_gegtr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_6mmj8")
+debug_color = Color(0, 0.635294, 0.396078, 0.419608)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -29.0
+offset_top = -27.0
+offset_right = 29.0
+offset_bottom = -20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d3v77")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n64pb")
+value = 100.0
+show_percentage = false
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3igr0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-24, -14)
+rotation = -0.496423
