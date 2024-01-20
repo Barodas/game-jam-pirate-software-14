@@ -4,6 +4,7 @@ extends Node2D
 @onready var _game_over_screen = $GameOverScreen
 @onready var _level_label = $HUD/LevelLabel
 @onready var _exp_bar = $HUD/ProgressBar
+@onready var _followers = $FollowerPool
 
 const SPAWN_INTERVAL = 0.3
 

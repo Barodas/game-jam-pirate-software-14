@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 const SPEED = 50.0
 
-@export var health = 10.0
+@export var health = 1.0
 @export var exp = 1.0
 
 @onready var player = get_node("/root/Level/Player")

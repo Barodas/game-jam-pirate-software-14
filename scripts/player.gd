@@ -3,6 +3,8 @@ extends CharacterBody2D
 signal game_over
 signal gained_exp(level: int, exp: float)
 
+@onready var follower_pool = get_node("/root/Level/FollowerPool")
+
 @onready var _sprite = $AnimatedSprite2D
 @onready var _hitbox = $HitBox
 @onready var _hurtbox = $HurtBox
@@ -20,6 +22,7 @@ var attack_timer = 0.0
 var health = MAX_HEALTH
 var level = 1
 var exp = 0.0
+var follower_cap = 0
 
 func _ready():
 	Signals.send_exp.connect(_on_receive_exp)
@@ -34,6 +37,9 @@ func _process(delta):
 		_sprite.flip_h = true
 	if Input.is_action_pressed("move_right"):
 		_sprite.flip_h = false
+	
+	if follower_pool.get_children().size() < follower_cap:
+		spawn_follower()
 
 func _physics_process(delta):
 	if health >= 0.0:
@@ -60,5 +66,11 @@ func _on_receive_exp(amount):
 	if exp >= EXP_PER_LEVEL:
 		exp -= EXP_PER_LEVEL
 		level += 1
+		follower_cap += 1
 	var exp_percent: float = exp / EXP_PER_LEVEL
 	gained_exp.emit(level, exp_percent)
+
+func spawn_follower():
+	var new_mob = preload("res://scenes/follower.tscn").instantiate()
+	new_mob.global_position = global_position
+	follower_pool.add_child(new_mob)

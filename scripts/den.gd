@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @onready var level = get_node("/root/Level")
+@onready var follower_pool = get_node("/root/Level/FollowerPool")
 
 @onready var _sprite = $AnimatedSprite2D
 @onready var _healthbar = $ProgressBar
@@ -47,7 +48,10 @@ func spawn_mob():
 		new_mob = preload("res://scenes/enemy_mouse.tscn").instantiate()
 	_spawn.progress_ratio = randf()
 	new_mob.global_position = _spawn.global_position
-	level.add_child(new_mob)
+	if claimed:
+		follower_pool.add_child(new_mob)
+	else:
+		level.add_child(new_mob)
 
 func take_damage(amount: float):
 	health -= amount
