@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bo4uhyne5h6wi"]
+[gd_scene load_steps=11 format=3 uid="uid://bo4uhyne5h6wi"]
 
 [ext_resource type="Script" path="res://scripts/follower.gd" id="1_135jq"]
 [ext_resource type="Texture2D" uid="uid://p7n5wnquj1vm" path="res://assets/tiny-tiny-heroes-animals.png" id="1_sfucr"]
@@ -56,9 +56,6 @@ radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t5udw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3uy15"]
-radius = 100.0
-
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 15
@@ -82,10 +79,3 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_t5udw")
 debug_color = Color(0.992157, 0, 0.278431, 0.419608)
-
-[node name="DetectionBox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
-shape = SubResource("CircleShape2D_3uy15")

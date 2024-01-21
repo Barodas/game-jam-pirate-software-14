@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @onready var _sprite = $AnimatedSprite2D
 @onready var _hurtbox = $HurtBox
-@onready var _detectionbox = $DetectionBox
 
 const ENEMY_DAMAGE_RATE = 1.0 
 
@@ -13,6 +12,7 @@ const WANDER_SPEED = 0.0
 @export var damage = 5.0
 
 @onready var player = get_node("/root/Level/Player")
+@onready var _detectionbox = player.get_node("DetectionBox")
 
 func _process(delta):
 	if health <= 0:
