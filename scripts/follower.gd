@@ -40,11 +40,18 @@ func _physics_process(delta):
 	var mobs_in_range = _detectionbox.get_overlapping_bodies()
 	var wander = false
 	if mobs_in_range.size() > 0:
-		if global_position.distance_to(mobs_in_range[0].global_position) < 20:
-			if mobs_in_range[0].has_method("take_damage"):
-				mobs_in_range[0].take_damage(damage * delta)
+		var nearest_index = mobs_in_range.size()
+		var nearest_dist = 1000.0
+		for n in mobs_in_range.size():
+			var dist_to_enemy = global_position.distance_to(mobs_in_range[n].global_position)
+			if dist_to_enemy < nearest_dist:
+				nearest_index = n
+				nearest_dist = dist_to_enemy
+		if nearest_dist < 20:
+			if mobs_in_range[nearest_index].has_method("take_damage"):
+				mobs_in_range[nearest_index].take_damage(damage * delta)
 		else:
-			direction = global_position.direction_to(mobs_in_range[0].global_position)
+			direction = global_position.direction_to(mobs_in_range[nearest_index].global_position)
 	else:
 		if global_position.distance_to(player.global_position) < 150:
 			# If nearby to player, pick a random direction and wander

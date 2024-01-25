@@ -13,6 +13,7 @@ extends Node2D
 @onready var _followers = $FollowerPool
 
 const SPAWN_INTERVAL = 10.0
+const DEN_VICTORY_COUNT = 26
 
 var spawn_timer = 0.0
 
@@ -29,6 +30,8 @@ func _process(delta):
 	if spawn_timer <= 0.0:
 		spawn_mob(30)
 		spawn_timer = SPAWN_INTERVAL
+	if tally_dens >= DEN_VICTORY_COUNT:
+		_on_player_game_over(true)
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("quit"):
