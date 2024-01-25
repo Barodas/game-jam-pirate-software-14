@@ -21,6 +21,7 @@ func _ready():
 func _process(delta):
 	if health <= 0:
 		Signals.send_exp.emit(exp, 1)
+		Signals.update_tally.emit(0, 1, 0)
 		boss_slain.emit()
 		queue_free()
 	

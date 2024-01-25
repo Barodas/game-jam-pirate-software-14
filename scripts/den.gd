@@ -88,6 +88,7 @@ func den_claimed():
 	for n in 2:
 		spawn_mob()
 	Signals.send_exp.emit(exp, 2)
+	Signals.update_tally.emit(0, 0, 1)
 	
 func _on_boss_slain():
 	boss_slain = true

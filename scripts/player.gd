@@ -59,7 +59,7 @@ func _physics_process(delta):
 		health -= ENEMY_DAMAGE_RATE * overlapping_mobs.size() * delta
 		_healthbar.value = health
 		if health <= 0.0:
-			game_over.emit()
+			game_over.emit(false)
 
 func _on_receive_exp(amount, spawn_bonus):
 	follower_cap += spawn_bonus

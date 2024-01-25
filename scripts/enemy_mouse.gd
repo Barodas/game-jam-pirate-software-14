@@ -13,6 +13,7 @@ const SPEED = 50.0
 func _process(delta):
 	if health <= 0:
 		Signals.send_exp.emit(exp, 0)
+		Signals.update_tally.emit(1, 0, 0)
 		queue_free()
 	
 	if velocity.length() > 0.0:
